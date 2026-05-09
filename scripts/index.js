@@ -28,3 +28,48 @@ let initialCards = [
 initialCards.forEach(function (elemento) {
   console.log(elemento.name);
 });
+
+const editButton = document.querySelector(".profile__edit-button");
+console.log(editButton);
+
+const editModal = document.querySelector("#edit-popup");
+const closeButton = editModal.querySelector(".popup__close");
+
+function openModal(modal) {
+  modal.classList.add("popup_is-opened");
+}
+function closeModal(modal) {
+  modal.classList.remove("popup_is-opened");
+}
+
+// Para abrir el modal (botón "Editar perfil"):
+
+// 1. Agregar el event listener al abrir
+editButton.addEventListener("click", function () {
+  openModal(editModal);
+});
+
+// 2. Para cerrar el modal (botón X):
+
+closeButton.addEventListener("click", function () {
+  closeModal(editModal);
+});
+
+//  Para el formulario :
+const formElement = document.querySelector("#edit-profile-form");
+
+formElement.addEventListener("submit", handleProfileFormSubmit);
+
+function fillProfileForm() {
+  // Paso 1: Obtener los elementos de la página usando las clases específicas
+  const profileTitle = document.querySelector(".profile__title");
+  const profileDescription = document.querySelector(".profile__description");
+
+  // Paso 2: Obtener los campos del formulario
+  const nameInput = document.querySelector('[name="name"]'); // Campo nombre
+  const aboutInput = document.querySelector('[name="description"]'); // Campo descripción
+
+  // Paso 3: Transferir los valores
+  nameInput.value = profileTitle.textContent;
+  aboutInput.value = profileDescription.textContent;
+}
