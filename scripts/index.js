@@ -45,9 +45,7 @@ function closeModal(modal) {
 // Para abrir el modal (botón "Editar perfil"):
 
 // 1. Agregar el event listener al abrir
-editButton.addEventListener("click", function () {
-  openModal(editModal);
-});
+editButton.addEventListener("click", handleOpenEditModal);
 
 // 2. Para cerrar el modal (botón X):
 
@@ -72,4 +70,12 @@ function fillProfileForm() {
   // Paso 3: Transferir los valores
   nameInput.value = profileTitle.textContent;
   aboutInput.value = profileDescription.textContent;
+}
+
+function handleOpenEditModal() {
+  // Paso 1: Rellenar el formulario
+  fillProfileForm();
+
+  // Paso 2: Abrir el modal
+  openModal(editModal);
 }
