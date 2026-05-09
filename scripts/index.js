@@ -79,3 +79,25 @@ function handleOpenEditModal() {
   // Paso 2: Abrir el modal
   openModal(editModal);
 }
+
+function handleProfileFormSubmit(evt) {
+  // Paso 1: Prevenir el comportamiento por defecto
+  evt.preventDefault();
+
+  // Paso 2: Obtener los valores de los campos
+  const nameInput = document.querySelector('[name="name"]');
+  const aboutInput = document.querySelector('[name="description"]');
+  const nameValue = nameInput.value; // Lo que el usuario escribió
+  const aboutValue = aboutInput.value; // Lo que el usuario escribió
+  const profileTitle = document.querySelector(".profile__title");
+  const profileDescription = document.querySelector(".profile__description");
+  // Paso 3: Actualizar los elementos de la página
+
+  profileTitle.textContent = nameValue; // Aquí SÍ usas .textContent
+  profileDescription.textContent = aboutValue; // Aquí SÍ usas .textContent
+
+  // Paso 4: Cerrar el modal
+  closeModal(editModal);
+}
+
+formElement.addEventListener("submit", handleProfileFormSubmit);
