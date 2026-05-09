@@ -93,8 +93,8 @@ function handleProfileFormSubmit(evt) {
   const profileDescription = document.querySelector(".profile__description");
   // Paso 3: Actualizar los elementos de la página
 
-  profileTitle.textContent = nameValue; // Aquí SÍ usas .textContent
-  profileDescription.textContent = aboutValue; // Aquí SÍ usas .textContent
+  profileTitle.textContent = nameValue;
+  profileDescription.textContent = aboutValue;
 
   // Paso 4: Cerrar el modal
   closeModal(editModal);
