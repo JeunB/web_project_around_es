@@ -138,6 +138,13 @@ function getCardElement({
     cardToDelete.remove();
   });
 
+  // Configuración de la funcionalidad de agrandar imágenes
+
+  // PAso 2: Establecer detector de clics en la imagen
+  cardImage.addEventListener("click", () => {
+    handleImageClick({ name, link });
+  });
+
   return cardElement;
 }
 
@@ -147,6 +154,21 @@ function handleLikeClick(evt) {
 
   //Alternar la clase que cambia la apariencia
   likeButton.classList.toggle("card__like-button_is-active");
+}
+
+function handleImageClick(cardData) {
+  // Seleccionar elementos del modal de imagen
+  const imageModal = document.querySelector("#image-popup");
+  const modalImage = imageModal.querySelector(".popup__image");
+  const modalTitle = imageModal.querySelector(".popup__caption");
+
+  // Establecer el contenido del modal
+  modalImage.src = cardData.link;
+  modalImage.alt = cardData.name;
+  modalTitle.textContent = cardData.name;
+
+  // Abrir el modal usando la función reutilizable
+  openModal(imageModal);
 }
 
 function renderCard(cardData, container) {
@@ -208,3 +230,10 @@ addCardCloseButton.addEventListener("click", function () {
   closeModal(addCardModal);
 });
 addCardForm.addEventListener("submit", handleCardFormSubmit);
+
+const imageModal = document.querySelector("#image-popup");
+const imageModalCloseButton = imageModal.querySelector(".popup__close");
+
+imageModalCloseButton.addEventListener("click", function () {
+  closeModal(imageModal);
+});
