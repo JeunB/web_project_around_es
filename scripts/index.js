@@ -100,8 +100,6 @@ function handleProfileFormSubmit(evt) {
   closeModal(editModal);
 }
 
-formElement.addEventListener("submit", handleProfileFormSubmit);
-
 function getCardElement({
   name = "Sin título",
   link = "./images/placeholder.jpg",
@@ -111,6 +109,8 @@ function getCardElement({
 
   //clonar el template
   const cardElement = cardTemplate.cloneNode(true);
+  console.log("tipo de cardElement:", cardElement);
+  console.log("¿es un elemento del DOM?", cardElement instanceof Element);
 
   //Llenar los datos
 
@@ -127,6 +127,16 @@ function getCardElement({
 
   //Paso 2: Agregar el event listener
   likeButton.addEventListener("click", handleLikeClick);
+
+  //Configuración de el botón de eliminación
+  //1. Seleccionar el botón
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  //2. Event listener para eliminar
+  deleteButton.addEventListener("click", () => {
+    //Función que elimina la tarjeta:
+    const cardToDelete = deleteButton.closest(".card");
+    cardToDelete.remove();
+  });
 
   return cardElement;
 }
