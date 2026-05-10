@@ -101,3 +101,22 @@ function handleProfileFormSubmit(evt) {
 }
 
 formElement.addEventListener("submit", handleProfileFormSubmit);
+
+getCardElement(data) {
+  //Obtener el template
+  const cardTemplate = document.querySelector('#card-template').textContent;
+
+  //clonar el template
+  const cardElement = cardTemplate.cloneNode(true);
+
+  //Llenar los datos
+
+  const cardImage = cardElement.querySelector('.card__image');
+  const cardTitle = cardElement.querySelector('.card__title');
+
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  cardTitle.textContent = data.name;
+
+  return.cardElement;
+}
