@@ -102,21 +102,84 @@ function handleProfileFormSubmit(evt) {
 
 formElement.addEventListener("submit", handleProfileFormSubmit);
 
-getCardElement(data) {
+function getCardElement({
+  name = "Sin título",
+  link = "./images/placeholder.jpg",
+}) {
   //Obtener el template
-  const cardTemplate = document.querySelector('#card-template').textContent;
+  const cardTemplate = document.querySelector("#card-template").content;
 
   //clonar el template
   const cardElement = cardTemplate.cloneNode(true);
 
   //Llenar los datos
 
-  const cardImage = cardElement.querySelector('.card__image');
-  const cardTitle = cardElement.querySelector('.card__title');
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
 
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  cardTitle.textContent = data.name;
+  cardImage.src = link;
+  cardImage.alt = name;
+  cardTitle.textContent = name;
 
-  return.cardElement;
+  return cardElement;
 }
+
+function renderCard(cardData, container) {
+  const cardElement = getCardElement(cardData);
+  container.prepend(cardElement);
+}
+
+//Renderizar tarjetas iniciales
+const cardsContainer = document.querySelector(".cards__list");
+initialCards.forEach(function (cardData) {
+  renderCard(cardData, cardsContainer);
+});
+
+// Elementos para la ventana emergente "Agregar tarjeta"
+const addButton = document.querySelector(".profile__add-button");
+const addCardModal = document.querySelector("#new-card-popup");
+const addCardCloseButton = addCardModal.querySelector(".popup__close");
+const addCardForm = document.querySelector("#new-card-form");
+
+// Función para abrir el modal de agregar tarjeta
+function handleOpenAddCardModal() {
+  openModal(addCardModal);
+}
+
+// Función para manejar el envío del formulario
+function handleCardFormSubmit(evt) {
+  // Paso 1: Prevenir el comportamiento por defecto
+  evt.preventDefault();
+
+  // Paso 2: Obtener los valores de los campos
+  const nameInput = document.querySelector('[name="place-name"]');
+  const linkInput = document.querySelector('[name="link"]');
+
+  const nameValue = nameInput.value;
+  const linkValue = linkInput.value;
+
+  // Paso 3: Crear objeto con los datos de la nueva tarjeta
+  const newCardData = {
+    name: nameValue,
+    link: linkValue,
+  };
+
+  // Paso 4: Obtener el contenedor de tarjetas
+  const cardsContainer = document.querySelector(".cards__list");
+
+  // Paso 5: Renderizar la nueva tarjeta (al inicio)
+  renderCard(newCardData, cardsContainer);
+
+  // Paso 6: Limpiar el formulario
+  addCardForm.reset();
+
+  // Paso 7: Cerrar el modal
+  closeModal(addCardModal);
+}
+
+// Event listeners
+addButton.addEventListener("click", handleOpenAddCardModal);
+addCardCloseButton.addEventListener("click", function () {
+  closeModal(addCardModal);
+});
+addCardForm.addEventListener("submit", handleCardFormSubmit);
