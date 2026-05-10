@@ -121,7 +121,22 @@ function getCardElement({
   cardImage.alt = name;
   cardTitle.textContent = name;
 
+  //Configurar el botón "Me gusta"
+  //Paso 1: Seleccionar el botón "Me gusta"
+  const likeButton = cardElement.querySelector(".card__like-button");
+
+  //Paso 2: Agregar el event listener
+  likeButton.addEventListener("click", handleLikeClick);
+
   return cardElement;
+}
+
+function handleLikeClick(evt) {
+  //Obtener el botón que fue clickeado
+  const likeButton = evt.target;
+
+  //Alternar la clase que cambia la apariencia
+  likeButton.classList.toggle("card__like-button_is-active");
 }
 
 function renderCard(cardData, container) {
