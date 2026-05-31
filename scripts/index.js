@@ -10,7 +10,7 @@ const validationConfig = {
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_invalid",
-  errorClass: "form__input-error_active",
+  errorClass: "popup__input-error_active",
 };
 
 // Activar validación global

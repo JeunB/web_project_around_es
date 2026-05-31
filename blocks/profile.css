@@ -78,16 +78,6 @@
   opacity: 0.6;
 }
 
-.form__input-error {
-  display: none;
-  color: red;
-  font-size: 12px;
-}
-
-.form__input-error_active {
-  display: block;
-}
-
 @media screen and (max-width: 959px) {
   .profile__info {
     grid-template-columns: auto;
