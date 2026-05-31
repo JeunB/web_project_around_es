@@ -1,3 +1,9 @@
+import { setEventListeners, resetValidation } from "./validate.js";
+
+const editProfileForm = document.querySelector("#edit-profile-form");
+
+setEventListeners(editProfileForm);
+
 // I. VARIABLES Y DATOS INICIALES
 let initialCards = [
   {
@@ -71,6 +77,7 @@ function handleOpenEditModal() {
   // Paso 1: Rellenar el formulario
   fillProfileForm();
 
+  resetValidation(editProfileForm);
   // Paso 2: Abrir el modal
   openModal(editModal);
 }

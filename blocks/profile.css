@@ -78,6 +78,26 @@
   opacity: 0.6;
 }
 
+.form__input-error {
+  display: none;
+  color: red;
+  font-size: 12px;
+}
+
+.form__input-error_active {
+  display: block;
+}
+
+.popup__input_invalid {
+  border-bottom: 1px solid #ff0000;
+}
+
+.popup__button_disabled {
+  opacity: 0.2;
+  cursor: default;
+  pointer-events: none;
+}
+
 @media screen and (max-width: 959px) {
   .profile__info {
     grid-template-columns: auto;
